@@ -13,24 +13,27 @@ $page = [];
 * If not, redirect to the index page.
 * NOTE: Replace true with the condition.
 */
-if (true) {
+if (isset($_GET['post_slug'])) {
 
   /**
   * 2. Create a Prepared Statment to SELECT the post WHERE the slug EQUALS
   * an anonymous variable.
   */
-
+  $sql = "SELECT*
+  FROM posts
+  WHERE post_name = ?
+ "
 
   /**
   * 3. Send the Prepared Statement to the Database
   * NOTE: Replace false with command to send the Prepared Statement.
   */
-  $stmt = false;
+  $stmt = $pdo->prepare($sql);
 
   /**
   * 4. Create an array to hold the value of the anonymous variable
   */
-
+$values = [remove_underscore($_GET['post'])];
 
   /**
   * 5. Execute the Prepared Statement with the array holding the value of the anonymous variable
